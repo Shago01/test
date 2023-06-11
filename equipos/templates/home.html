@@ -1,0 +1,54 @@
+<!-- debe eredar el contido de la clase padre -->
+{% extends "./base.html"%}
+<!--  -->
+{% block title %}lista de quipos{% endblock %}
+
+<!--  -->
+{% block card_header %}
+<h2 class="card-title">lista de equipos</h2>
+<div class="btn btn-registrar">
+  <a href="{% url 'registrar' %}" class="btn-link btn-home-registrar-link"
+    >Registar</a
+  >
+</div>
+{% endblock %}
+
+<!--  -->
+{% block card_body %}
+<div class="card-table">
+  <table class="table">
+    <thead class="fila table-header">
+      <th class="table-celda">Imagen</th>
+      <th class="table-celda">Nombre</th>
+      <th class="table-celda">Marca</th>
+      <th class="table-celda">Estado</th>
+      <th class="table-celda">Descripción</th>
+      <th class="table-celda">Cantidad</th>
+      <th class="table-celda">Opciones</th>
+    </thead>
+    <tbody class="table-body">
+      {% for e in equipos %}
+      <tr class="fila">
+        <th class="table-celda">
+          <img src="{{e.img.url}}" alt="" height="80px" />
+        </th>
+        <th class="table-celda">{{e.nombre}}</th>
+        <th class="table-celda">{{e.marca}}</th>
+        <th class="table-celda">{{e.estado}}</th>
+        <th class="table-celda">{{e.description}}</th>
+        <th class="table-celda">{{e.cantidad}}</th>
+        <th class="table-celda">
+          <div class="btn btn-table btn-editar">
+            <a href="editar/{{e.id}}" class="btn-link btn-link-table">✏️</a>
+          </div>
+          <div class="btn btn-table btn-borrar">
+            <a href="eliminar/{{e.id}}" class="btn-link btn-link-table">❌</a>
+          </div>
+        </th>
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+<form enctype="multipart/form-data" method="post" class="form" id="form">
+  {% csrf_token %}
+  <!--  -->
+  {% for atributo in formulario %}
+  <div class="form-grup">
+    <label for="" class="form-text">{{atributo.label}}: </label>
+    {% if atributo.field.widget.input_type == 'file' and atributo.value %}
+    <img
+      src="{{MEDIA_URL}}/img/{{atributo.value}}"
+      alt=""
+      class="editar-img"
+      width="300px"
+    />
+    {% endif %}
+
+    <input
+      class="form-imput"
+      id="form-{{atributo.name}}"
+      type="{{atributo.field.widget.input_type}}"
+      placeholder="{{atributo.label}}."
+      name="{{atributo.name}}"
+      aria-describedby="helpId"
+      value="{{atributo.value | default:''}}"
+      required
+    />
+
+    {% if not atributo.field.widget.input_type == 'file' %}
+    <div class="form-error" id="form-error-{{atributo.name}}">
+      <p class="form-error-text">
+        El campo {{atributo.label}} no acepta esa entrada
+      </p>
+    </div>
+    {% endif %}
+  </div>
+  {% endfor %}
+  <input
+    type="submit"
+    id="from-submit"
+    class="btn btn-form"
+    value="Enviar informacion"
+  />
+</form>

@@ -1,0 +1,13 @@
+<!-- debe eredar el contido de la clase padre -->
+{% extends "./base.html"%}
+<!--  -->
+{%block title%} registro de equipo{% endblock %}
+<!--  -->
+
+{% block card_header %}
+<h2 class="card-title">Registar</h2>
+{% endblock %} {% block card_body %}
+
+<div class="card-registro">{% include "form.html" %}</div>
+
+{% endblock %}
